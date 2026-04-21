@@ -233,6 +233,53 @@
     border-radius: var(--radius); overflow: hidden;
   }
 
+  /* SEO Section */
+  .seo-verdict {
+    background: rgba(0,200,212,0.06); border: 1px solid var(--accent-border);
+    border-radius: var(--radius); padding: 28px 32px; margin-bottom: 40px;
+  }
+  .seo-verdict p { font-size: 16px; color: var(--text); line-height: 1.8; }
+  .seo-verdict strong { color: var(--accent); }
+  .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+  .risk-card {
+    background: var(--surface); border: 1px solid var(--surface-border);
+    border-radius: var(--radius); padding: 24px;
+  }
+  .risk-card h4 { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .risk-card p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+  .risk-level { font-size: 11px; font-weight: 700; letter-spacing: 1px; padding: 3px 8px; border-radius: 10px; }
+  .risk-none { background: rgba(0,212,100,0.12); color: #00d464; }
+  .risk-low { background: rgba(255,200,60,0.12); color: #ffc83c; }
+  .risk-med { background: rgba(255,140,0,0.12); color: #ff8c00; }
+  .benefit-list { margin-top: 32px; display: flex; flex-direction: column; gap: 10px; }
+  .benefit-item {
+    display: flex; gap: 14px; align-items: flex-start;
+    background: var(--surface); border: 1px solid var(--surface-border);
+    border-radius: 10px; padding: 16px 20px;
+  }
+  .benefit-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .benefit-item h4 { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+  .benefit-item p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .mitigation-table { margin-top: 32px; width: 100%; border-collapse: collapse; }
+  .mitigation-table th {
+    text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 1.2px;
+    text-transform: uppercase; color: var(--text-muted);
+    padding: 10px 16px; border-bottom: 1px solid var(--surface-border);
+  }
+  .mitigation-table td {
+    padding: 14px 16px; font-size: 13px; color: var(--text);
+    border-bottom: 1px solid rgba(255,255,255,0.04); vertical-align: top;
+  }
+  .mitigation-table tr:last-child td { border-bottom: none; }
+  .mitigation-table td:first-child { color: var(--white); font-weight: 500; }
+  .mitigation-table td:last-child { color: var(--text-muted); }
+  .mitigation-table-wrap {
+    background: var(--surface); border: 1px solid var(--surface-border);
+    border-radius: var(--radius); overflow: hidden;
+  }
+  .source-note { font-size: 12px; color: var(--text-muted); margin-top: 16px; font-style: italic; }
+  .source-note a { color: var(--accent); text-decoration: none; }
+
   /* Download section */
   .download-section {
     text-align: center; padding: 80px 0;
@@ -544,10 +591,130 @@
 
 </div>
 
+<!-- SEO Section -->
+<div class="divider"></div>
+<section>
+  <div class="container">
+    <div class="section-eyebrow">06 — SEO Impact Analysis</div>
+    <h2 class="section-title">Marketing's Concern — <em>Addressed</em></h2>
+    <p class="section-sub">A visual-only redesign with no URL or content changes carries near-zero SEO risk — if Core Web Vitals are maintained. Here's the full picture.</p>
+
+    <div class="seo-verdict">
+      <p>Google's John Mueller confirmed on the record: <strong>"Changing the layout of your pages can affect your search results — it can be a good thing, it can be a bad thing."</strong> The key: the visual change itself is not the risk. What happens during implementation is. Every risk below is mitigatable with standard checks.</p>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:600;color:var(--white);margin:0 0 8px">Implementation Risks</h3>
+    <div class="risk-grid">
+      <div class="risk-card">
+        <h4>LCP (Largest Contentful Paint) <span class="risk-level risk-low">LOW</span></h4>
+        <p>Large dark hero background images or heavy CSS gradients can slow LCP if not optimized. Target: under 2.5s. Fix: preload hero images, use CSS gradients instead of raster images where possible.</p>
+      </div>
+      <div class="risk-card">
+        <h4>CLS (Layout Shift) <span class="risk-level risk-low">LOW</span></h4>
+        <p>Web font swaps on a dark background cause visible flicker/shift. Fix: add <code style="color:var(--accent);font-size:12px">font-display: swap</code> + preload critical fonts in HubSpot &lt;head&gt;.</p>
+      </div>
+      <div class="risk-card">
+        <h4>Heading Hierarchy <span class="risk-level risk-low">LOW</span></h4>
+        <p>HubSpot template swaps sometimes accidentally change H1/H2/H3 structure. Mueller called this out specifically. A pre/post heading audit on Tier 1 pages takes 30 minutes and eliminates this risk.</p>
+      </div>
+      <div class="risk-card">
+        <h4>Structured Data / Schema <span class="risk-level risk-none">NONE</span></h4>
+        <p>Schema markup lives in the page &lt;head&gt; or structured JSON-LD — untouched by visual CSS changes. Verify with Google's Rich Results Test post-launch as a precaution.</p>
+      </div>
+      <div class="risk-card">
+        <h4>URL Structure <span class="risk-level risk-none">NONE</span></h4>
+        <p>Zero URL changes means zero crawl disruption, zero redirect requirements, zero index churn. This is the single biggest SEO risk in most redesigns — and it doesn't apply here.</p>
+      </div>
+      <div class="risk-card">
+        <h4>Content Changes <span class="risk-level risk-none">NONE</span></h4>
+        <p>You're explicitly preserving all copy. Content changes are the #1 cause of post-redesign ranking drops. Not applicable.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:600;color:var(--white);margin:40px 0 8px">SEO Benefits of This Redesign</h3>
+    <div class="benefit-list">
+      <div class="benefit-item">
+        <div class="benefit-icon">📉</div>
+        <div>
+          <h4>Lower Bounce Rate</h4>
+          <p>A more visually engaging site increases time-on-page and scroll depth. Google's behavioral signals (pogo-sticking, dwell time) are soft but real ranking factors — and they improve with better design.</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">📱</div>
+        <div>
+          <h4>Better Mobile Experience</h4>
+          <p>Dark enterprise designs with clean, minimal CSS typically render faster and more cleanly on mobile than heavy light-background templates. Google uses mobile-first indexing — mobile CWV scores matter most.</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">♿</div>
+        <div>
+          <h4>Improved Accessibility = Better Rankings</h4>
+          <p>The dark enterprise system improves contrast ratios (white on dark far exceeds WCAG AA). Google has confirmed accessibility improvements are net-positive for search performance.</p>
+        </div>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">⚡</div>
+        <div>
+          <h4>Potential CWV Improvement</h4>
+          <p>If the current site's light-background sections use heavy raster images, replacing them with CSS-based dark backgrounds can actually improve LCP and reduce page weight. The redesign can be a net SEO positive.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px;font-weight:600;color:var(--white);margin:40px 0 8px">Mitigation Checklist</h3>
+    <div class="mitigation-table-wrap">
+      <table class="mitigation-table">
+        <thead>
+          <tr>
+            <th>Risk</th>
+            <th>Action</th>
+            <th>Who / When</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>LCP regression</td>
+            <td>Run PageSpeed Insights on 3 Tier 1 pages before and after launch</td>
+            <td>Dev · Post-launch</td>
+          </tr>
+          <tr>
+            <td>CLS from fonts</td>
+            <td>Add font-display: swap + preload tags in HubSpot &lt;head&gt;</td>
+            <td>Dev · During build</td>
+          </tr>
+          <tr>
+            <td>Heading hierarchy</td>
+            <td>Audit H1/H2/H3 on all 8 Tier 1 pages pre and post</td>
+            <td>Designer/Dev · QA</td>
+          </tr>
+          <tr>
+            <td>Structured data</td>
+            <td>Run Rich Results Test on Homepage + PSA page post-launch</td>
+            <td>Dev · Post-launch</td>
+          </tr>
+          <tr>
+            <td>Rankings monitoring</td>
+            <td>Pull GSC baseline 30 days before launch; monitor weekly for 60 days after</td>
+            <td>Marketing · Ongoing</td>
+          </tr>
+          <tr>
+            <td>CWV baseline</td>
+            <td>Export current Core Web Vitals from GSC before launch for comparison</td>
+            <td>Marketing · Pre-launch</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source-note">Source: <a href="https://www.searchenginejournal.com/changing-web-layout-can-affect-search-rankings/382700/" target="_blank">Search Engine Journal — Google's John Mueller on layout changes and SEO</a> · Google Search Central Core Web Vitals documentation</p>
+  </div>
+</section>
+
 <!-- Download / Links -->
 <div class="download-section">
   <div class="container">
-    <div class="section-eyebrow" style="justify-content:center;display:flex">06 — Files</div>
+    <div class="section-eyebrow" style="justify-content:center;display:flex">07 — Files</div>
     <h2 class="section-title" style="text-align:center">Ready to <em>Start</em></h2>
     <p class="hero-sub" style="text-align:center;margin:0 auto 40px">Full technical brief with all URLs, design tokens, and prompt templates.</p>
     <a href="./revio-website-redesign-brief.md" class="btn">↓ Download Full Brief (MD)</a>
